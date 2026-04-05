@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Desconto</title>
+</head>
+<body>
+    <script type="text/javascript">
+        //Um campo para o preço original
+        //Um campo para a porcentagem de desconto
+        //Um botão "Calcular"
+        //Exibir o valor do desconto e o preço final
+        function calc_desconto(valor, desconto){
+            return ((valor * desconto) / 100).toFixed(2).replace('.',',')
+        }
+
+        window.onload = function (){
+            document.getElementById('btn_calcular').onclick = function(){
+                let desconto = document.getElementById('desconto').value //Captura o valor de desconto
+                let valor = document.getElementById('valor').value //Captura o valor do produto
+
+                let desconto_final = calc_desconto(valor, desconto)
+                let preco_final = 'R$ ' + (parseFloat(valor) - parseFloat(desconto_final.replace(',', '.'))).toFixed(2).replace('.', ',')
+                let resultado = '<br><br>Desconto de: ' + desconto + '%' + '<br><br>Valor do produto: R$ ' + valor + '<br><br>Valor do desconto: R$ ' + desconto_final + '<br><br>Valor Final: ' + preco_final
+
+                document.getElementById('resultado').innerHTML = 'Resultado: ' + resultado
+            }
+        }
+    </script>
+    <h1>Calculadora de Desconto</h1>
+    <b>Digite a % de desconto: </b><input type="number" id="desconto"><br><br>
+    <b>Digite o valor original do produto R$: </b><input type="number" id="valor"><br><br>
+    <button id="btn_calcular">Calcular</button><br><br>
+    <p><b id="resultado">Resultado: </b></p>
+</body>
+</html>

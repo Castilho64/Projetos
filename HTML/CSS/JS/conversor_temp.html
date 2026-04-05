@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Temperatura</title>
+</head>
+<body>
+    <script type="text/javascript">
+        //Um campo para digitar a tenperatura
+        //Um 'SELECT' com duas opções: "Celsius para Fahrenheit" e "Fahrenheit para Celsius"
+        //Botão 'Converter'
+        //Exibir o resultado
+        //Fórmulas: Celsius -> Fahrenheit: (C × 9/5) + 32 / Fahrenheit -> Celsius: (F - 32) × 5/9
+
+        function celsius_fah(temp){
+            return ((temp * 9/5) + 32).toFixed(2).replace('.',',') + ' °F'
+        }
+        function fah_celsius(temp){
+            return ((temp - 32) * 5/9).toFixed(2).replace('.',',') + ' °C'
+        }
+
+        window.onload = function (){
+            document.getElementById('btn_converter').onclick = function(){
+                let temp = document.getElementById('temp').value 
+                let tipo = document.getElementById('tipo').value
+                
+                if(tipo == '1'){
+                    resultado = celsius_fah(temp)
+                } else{
+                    resultado = fah_celsius(temp)
+                }
+
+                 document.getElementById('resultado').innerHTML = 'Resultado: ' + resultado
+            }
+        }
+        
+    </script>
+    <h1>Conversor de Temperatura</h1>
+    <select id="tipo">
+        <option value="1">Celsius para Fahrenheit</option>
+        <option value="2">Fahrenheit para Celsius</option>
+    </select>
+    <b>Temperatura: </b><input type="number" id="temp"><br><br>
+    <button id="btn_converter">Converter</button>
+    <p><b id="resultado"> Resultado: </b></p>
+</body>
+</html>
